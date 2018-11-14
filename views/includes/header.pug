@@ -1,0 +1,20 @@
+header
+	h1
+		a(href='/')
+			if station
+				if station.id == 40850
+					.page-title-inner.
+						Harold Wash. Library<div class="station-subtitle">State/Van Buren</div>
+				else if station.id == 41670
+					.page-title-inner.
+						Conservatory<div class="station-subtitle">/ Central Park Drive</div>
+				else if station.id == 40670
+					.page-title-inner.
+						Western<div class="station-subtitle">O\'Hare Branch</div>
+				else if station.id == 40220
+					.page-title-inner.
+						Western<div class="station-subtitle">Forest Park Branch</div>
+				else
+					.page-title-inner= station.name
+			else
+				.page-title-inner Where's the EL?

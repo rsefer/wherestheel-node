@@ -1,0 +1,603 @@
+html,
+body {
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+}
+
+a {
+
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+}
+
+%icon {
+  display: inline-block;
+  vertical-align: middle;
+  content: ' ';
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: {
+    size: contain;
+    position: center center;
+    repeat: no-repeat;
+  }
+}
+
+header {
+
+  text-align: center;
+
+  h1 {
+
+    line-height: 1;
+
+    a {
+
+      color: $black;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      .page-title-inner {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+    }
+
+    .station-subtitle {
+      font-size: 0.5em;
+    }
+
+  }
+
+}
+
+footer {
+
+  text-align: center;
+  font-size: 0.75rem;
+
+  a {
+    color: $black;
+  }
+
+}
+
+.station-arrivals {
+
+  text-align: center;
+
+  .direction-name {
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .direction-1 .direction-name {
+    margin-top: 0px;
+  }
+
+  .time-refresh-content {
+    font-size: 0.875rem;
+  }
+
+}
+
+.station-arrivals-wrap,
+.arrivals-list-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.arrivals-list {
+
+  transform: translate(0px, 0px);
+  transition: all 1000ms;
+
+  &.old {
+
+    &.updating {
+
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      width: 100%;
+
+      &.updated {
+        left: 100%;
+        right: -100%;
+      }
+
+    }
+
+  }
+
+}
+
+[data-route-code="Red"] {
+  background: $red;
+}
+
+[data-route-code="Blue"] {
+  background: $blue;
+}
+
+[data-route-code="Brn"] {
+  background: $brown;
+}
+
+[data-route-code="G"] {
+  background: $green;
+}
+
+[data-route-code="Org"] {
+  background: $orange;
+}
+
+[data-route-code="P"],
+[data-route-code="Pexp"] {
+  background: $purple;
+}
+
+[data-route-code="Pink"] {
+  background: $pink;
+}
+
+[data-route-code="Y"] {
+
+  background: $yellow;
+
+  &,
+  &.arrival,
+  &.route .route-title {
+    color: $black;
+  }
+
+}
+
+.nearest-station-wrap {
+
+  margin: 1rem 0px;
+  text-align: center;
+
+  .finding-nearest-station {
+
+    position: relative;
+    display: inline-block;
+
+    &:before {
+      @extend %icon;
+      position: absolute;
+      content: ' ';
+      top: 50%;
+      left: -1rem;
+      transform: translate(-50%, -50%);
+      margin: 0px;
+      background: $black;
+      border-radius: 50px;
+      font-size: 1em;
+      line-height: 1em;
+      animation: pulse 8000ms infinite;
+    }
+
+  }
+
+  a {
+
+    &,
+    &:visited {
+      color: $black;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.get-nearest-link,
+    &.nearest-station {
+
+      position: relative;
+
+      &:before {
+        @extend %icon;
+        position: absolute;
+        left: -1.25em;
+        top: 1px;
+        margin: 0px;
+        width: 1em;
+        height: 1em;
+        background-image: url($marker);
+      }
+
+    }
+
+  }
+
+}
+
+.route {
+
+  .route-title {
+
+    padding: 1rem;
+    color: $white;
+    text-align: center;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+
+  &.active .station-list {
+    display: block;
+  }
+
+  .station-list {
+    display: none;
+    padding: 1rem;
+    background: $white;
+  }
+
+  ul {
+
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+
+    li {
+
+      margin: 0.25rem 0px;
+      font-size: 1.25rem;
+
+      &:before {
+        @extend %icon;
+        background-image: url($track);
+      }
+
+      &.airport:before {
+        background-image: url($plane);
+      }
+
+      &.transfer:before {
+        background-image: url($transfer);
+      }
+
+    }
+
+  }
+
+  a {
+
+    color: $black;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+  }
+
+  hr {
+
+    margin-top: 1rem;
+    margin-bottom: 2.25rem;
+    height: 1px;
+    border: 0px;
+    background: transparentize($grey, 0.5);
+
+    &:after {
+      position: absolute;
+      display: block;
+      margin-top: 0.75rem;
+      margin-left: 1.5rem;
+      color: $grey;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    &.loop:after {
+      content: 'Loop';
+    }
+
+    &.eastbranch:after {
+      content: 'East Branch';
+    }
+
+    &.westbranch:after {
+      content: 'West Branch';
+    }
+
+  }
+
+}
+
+.arrival {
+
+  position: relative;
+  padding: 1rem;
+  color: $white;
+  user-select: none;
+
+  &:first-child:not(:last-child),
+  &.approaching:not(:last-child) {
+    border-bottom: 1px solid transparentize($black, 0.8);
+  }
+
+  &:first-child,
+  &.approaching {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+
+  .arrival-time-diff,
+  .arrival-time {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .arrival-time {
+    display: none;
+  }
+
+  &.active,
+  &:not(.active):hover {
+
+    .arrival-time {
+
+      display: inline-block;
+
+      &:before {
+        content: '\2022';
+        margin: 0px 0.375rem;
+      }
+
+    }
+
+  }
+
+  &[data-destination="Ashland/63rd"],
+  &[data-destination="63rd Street"],
+  &[data-destination="Cottage Grove"] {
+
+    .arrival-time-diff:before {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.25rem;
+      font-size: 0.5em;
+    }
+
+  }
+
+  &[data-destination="Ashland/63rd"] {
+
+    .arrival-time-diff:before {
+      content: '(to Ashland/63rd)';
+    }
+
+  }
+
+  &[data-destination="63rd Street"] {
+
+    .arrival-time-diff:before {
+      content: '(to 63rd)';
+    }
+
+  }
+
+  &[data-destination="Cottage Grove"] {
+
+    color: $green;
+    background: $grey;
+
+    .arrival-time-diff:before {
+      content: '(to Cottage Grove)';
+    }
+
+  }
+
+}
+
+.alert-toggle {
+
+  @extend %icon;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0px;
+  width: 0px;
+  height: 0px;
+  background-image: url($exclamationYellow);
+  transition: all 600ms;
+
+  &.loaded {
+    margin-left: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+}
+
+.alerts {
+
+  display: none;
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+
+  &:before,
+  &:after {
+    display: block;
+    content: ' ';
+    height: 0.5rem;
+    background: {
+      image: url($yellowStripes);
+      position: center center;
+      repeat: repeat;
+    }
+  }
+
+  &.active {
+    display: block;
+  }
+
+  a {
+    color: $black;
+    text-decoration: underline;
+    text-transform: uppercase;
+  }
+
+  .alert {
+
+    padding: 1rem 1rem 0px;
+
+    &:last-child {
+      padding-bottom: 1rem;
+    }
+
+  }
+
+}
+
+.as-of {
+  margin-bottom: 0px;
+}
+
+@media screen and (min-width: 768px) {
+
+  .station .wrapper {
+    margin: 0px auto;
+    width: 768px;
+  }
+
+  .route-list {
+
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .yellow-orange {
+
+      order: 1;
+      width: 33%;
+
+      .route {
+        width: 100%;
+      }
+
+    }
+
+    .route {
+
+      width: 25%;
+
+      &[data-route-code="Red"],
+      &[data-route-code="Brn"] {
+        width: 33.33%;
+      }
+
+      &[data-route-code="Red"] {
+        order: 2;
+      }
+
+      &[data-route-code="Brn"] {
+        order: 3;
+      }
+
+      &[data-route-code="G"] {
+        order: 5;
+      }
+
+      &[data-route-code="P"] {
+        order: 6;
+      }
+
+      &[data-route-code="Pink"] {
+        order: 7;
+      }
+
+      &[data-route-code="Blue"] {
+        order: 8;
+      }
+
+      .station-list {
+        display: block;
+      }
+
+      ul li {
+        font-size: 1rem;
+      }
+
+    }
+
+  }
+
+}
+
+@media screen and (min-width: 1100px) {
+
+  .route-list {
+
+    .yellow-orange {
+
+      .divider {
+        margin-top: 0px;
+        break-before: column;
+      }
+
+    }
+
+    .route {
+
+      &[data-route-code="Org"],
+      &[data-route-code="Red"],
+      &[data-route-code="Brn"] {
+
+        .station-list {
+          column-count: 2;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+@media screen and (min-width: 1700px) {
+
+  .route-list .route {
+
+    .route-title {
+    }
+
+    .station-list {
+      column-count: 2;
+    }
+
+    &[data-route-code="Y"] {
+
+      .station-list {
+        column-count: 1;
+      }
+
+    }
+
+  }
+
+}

@@ -1,0 +1,20 @@
+head
+	title= title + 'Where\'s the El? | A clean, mobile-friendly train tracker'
+	meta(charset='charset')
+	meta(viewport='width=device-width,minimum-scale=1.0,maximum-scale=1.0')
+	meta(apple-mobile-web-app-capable='yes')
+	link(rel='apple-touch-icon' href='/static/images/favicons/favicon_' + color + '_800.png')
+	link(rel='shortcut icon' href='/static/images/favicons/favicon_' + color + '_200.png')
+	link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Raleway:300,500,700')
+	link(rel='stylesheet' href='/static/style/style.min.css')
+	script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+	script(src='/static/scripts/scripts.min.js')
+	script.
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-3797528-16', 'wherestheel.com');
+		ga('require', 'displayfeatures');
+		ga('send', 'pageview');

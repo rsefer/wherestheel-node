@@ -1,0 +1,39 @@
+@keyframes pulse {
+  0%, 100% {
+    @include pulse-point($green);
+  }
+
+  12.5% {
+    @include pulse-point($yellow);
+  }
+
+  25% {
+    @include pulse-point($orange);
+  }
+
+  37.5% {
+    @include pulse-point($red);
+  }
+
+  50% {
+    @include pulse-point($brown);
+  }
+
+  62.5% {
+    @include pulse-point($purple);
+  }
+
+  75% {
+    @include pulse-point($pink);
+  }
+
+  87.5% {
+    @include pulse-point($blue);
+  }
+
+  6.25%, 18.75%, 31.25%, 43.75%, 56.25%, 68.75%, 81.25%, 93.75% {
+    background: $black;
+    width: 0.5em;
+    height: 0.5em;
+  }
+}
