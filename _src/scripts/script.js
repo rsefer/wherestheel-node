@@ -58,17 +58,24 @@ jQuery(document).ready(function($) {
   });
 
   if ($('body').hasClass('station')) {
-    // $.ajax({
-    //   url: '/display_alerts',
-		// 	data: {
-		// 		id: $('.station').data('station-id')
-		// 	},
-		// 	success: function() {
-		// 		setTimeout(function() {
-		// 			$('.alert-toggle').addClass('loaded');
-		// 		}, 500);
-    //   }
-    // });
+    $.ajax({
+			url: '/s/' + $('.station').data('station-id') + '/alerts',
+			dataType: 'json',
+	    success: function(data, textStatus, jqXHR) {
+				console.log(data);
+				if (data.markup) {
+					$('header').after(data.markup);
+					$('h1').append('<div class="alert-toggle"></div>').promise().done(function() {
+						$('.alert-toggle').click(function() {
+							$('.alerts').toggleClass('active');
+						});
+					});
+				}
+				setTimeout(function() {
+					$('.alert-toggle').addClass('loaded');
+				}, 500);
+      }
+    });
     setInterval(updateArrivals, 30 * 1000);
 		$('.arrival').click(function() {
 			$(this).toggleClass('active');
