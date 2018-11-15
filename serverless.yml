@@ -1,4 +1,4 @@
-service: wte-node
+service: wheres-the-el
 
 provider:
   name: aws
@@ -12,3 +12,13 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+
+plugins:
+  - serverless-domain-manager
+
+custom:
+  customDomain:
+    domainName: wherestheel.com
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
