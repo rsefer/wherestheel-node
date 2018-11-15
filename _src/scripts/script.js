@@ -1,11 +1,13 @@
 function updateArrivals() {
   $('.arrivals-list').removeClass('new').addClass('old');
 	$.ajax({
-    url: '/update_station_arrivals',
-		data: {
-			id: $('.station').data('station-id')
-		},
-    success: function() {
+    url: '/s/' + $('.station').data('station-id') + '/update',
+		dataType: 'json',
+    success: function(data, textStatus, jqXHR) {
+			$('.direction-1 .arrivals-list.old:first').before('<div class="arrivals-list new">' + data.markup.dir1 + '</div>');
+			$('.direction-5 .arrivals-list.old:first').before('<div class="arrivals-list new">' + data.markup.dir5 + '</div>');
+			$('.time-refresh-content').html(data.markup.timeUpdate);
+
       $('.arrivals-list.old').each(function() {
         var oldHeight = $(this).outerHeight();
         $(this).parent().css('height', oldHeight);
@@ -56,17 +58,17 @@ jQuery(document).ready(function($) {
   });
 
   if ($('body').hasClass('station')) {
-    $.ajax({
-      url: '/display_alerts',
-			data: {
-				id: $('.station').data('station-id')
-			},
-			success: function() {
-				setTimeout(function() {
-					$('.alert-toggle').addClass('loaded');
-				}, 500);
-      }
-    });
+    // $.ajax({
+    //   url: '/display_alerts',
+		// 	data: {
+		// 		id: $('.station').data('station-id')
+		// 	},
+		// 	success: function() {
+		// 		setTimeout(function() {
+		// 			$('.alert-toggle').addClass('loaded');
+		// 		}, 500);
+    //   }
+    // });
     setInterval(updateArrivals, 30 * 1000);
 		$('.arrival').click(function() {
 			$(this).toggleClass('active');

@@ -13,6 +13,5 @@ app.use('/static', express.static(__dirname + '/public'));
 
 app.listen(listenPort, () => console.log('Listening on port ' + listenPort));
 app.use(bodyParser.json({ strict: false }));
-app.get('/', function (req, res) { res.json({}); });
 
 module.exports.handler = serverless(app);

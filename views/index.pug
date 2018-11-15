@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 html(lang='en')
 	include includes/head.pug
-	body
-		include includes/header.pug
+	body.index
+		.wrapper
+			include includes/header.pug
 
-		//- section.nearest-station-wrap
-			//- a.get-nearest-link(href='#') Find Nearest Station
+			//- section.nearest-station-wrap
+				//- a.get-nearest-link(href='#') Find Nearest Station
 
-		section.route-list
-			include includes/lines/red.pug
-			include includes/lines/brown.pug
-			.yellow-orange
-				include includes/lines/yellow.pug
-				include includes/lines/orange.pug
-			include includes/lines/green.pug
-			include includes/lines/purple.pug
-			include includes/lines/pink.pug
-			include includes/lines/blue.pug
+			section.route-list
+				include includes/lines/red.pug
+				include includes/lines/brown.pug
+				.yellow-orange
+					include includes/lines/yellow.pug
+					include includes/lines/orange.pug
+				include includes/lines/green.pug
+				include includes/lines/purple.pug
+				include includes/lines/pink.pug
+				include includes/lines/blue.pug
 
-		include includes/footer.pug
+			include includes/footer.pug

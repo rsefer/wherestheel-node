@@ -1,5 +1,8 @@
 head
-	title= title + 'Where\'s the El? | A clean, mobile-friendly train tracker'
+	if title
+		title= title + ' | Where\'s the EL?'
+	else
+		title= 'Where\'s the EL? | A clean, mobile-friendly train tracker'
 	meta(charset='charset')
 	meta(viewport='width=device-width,minimum-scale=1.0,maximum-scale=1.0')
 	meta(apple-mobile-web-app-capable='yes')

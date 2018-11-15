@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 html(lang='en')
 	include includes/head.pug
-	body
-		include includes/header.pug
-		include includes/footer.pug
+	body.station(data-station-id=station.id)
+		.wrapper
+			include includes/header.pug
+
+			.station-arrivals-wrap
+				.station-arrivals
+					.direction.direction-1
+						h2.direction-name Northbound
+						.arrivals-list-wrap
+							.arrivals-list !{markup.dir1}
+					.direction.direction-5
+						h2.direction-name Southbound
+						.arrivals-list-wrap
+							.arrivals-list !{markup.dir5}
+					.time-refresh-content !{markup.timeUpdate}
+
+			include includes/footer.pug
