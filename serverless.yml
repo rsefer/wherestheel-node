@@ -15,6 +15,7 @@ functions:
 
 plugins:
   - serverless-domain-manager
+  - serverless-apigw-binary
 
 custom:
   customDomain:
@@ -22,3 +23,6 @@ custom:
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true
+  apigwBinary:
+    types:
+      - '*/*'
