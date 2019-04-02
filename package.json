@@ -21,9 +21,9 @@
     "serverless-http": "^1.7.2"
   },
   "devDependencies": {
-    "sass": "^1.14.3",
+    "sass": "^1.17.3",
     "serverless-apigw-binary": "^0.4.4",
-    "serverless-domain-manager": "^2.6.6",
-    "uglify-js": "^3.4.9"
+    "serverless-domain-manager": "^2.6.13",
+    "uglify-js": "^3.5.3"
   }
 }
